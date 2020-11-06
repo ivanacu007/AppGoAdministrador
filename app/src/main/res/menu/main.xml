@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search_cat_product"
+        android:icon="@drawable/ic_search"
+        android:title="@string/action_search_product"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"
+        app:queryHint="@string/action_search_product"
+        app:defaultQueryHint="@string/action_search_product"/>
+    <item
+        android:id="@+id/action_date_desc"
+        android:orderInCategory="100"
+        android:title="@string/action_date_desc"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_date_asc"
+        android:orderInCategory="100"
+        android:title="@string/action_date_asc"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_complete"
+        android:orderInCategory="100"
+        android:title="@string/action_complete"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_onroad"
+        android:orderInCategory="100"
+        android:title="@string/action_onroad"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_pendientes"
+        android:orderInCategory="100"
+        android:title="@string/action_pendientes"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_canceled"
+        android:orderInCategory="100"
+        android:title="@string/action_canceled"
+        app:showAsAction="never" />
+</menu>

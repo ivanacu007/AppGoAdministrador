@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppGoAdmin">
+        <activity android:name=".activities.PedidosActivity"></activity>
         <activity
             android:name=".activities.WelcomeScreen"
             android:screenOrientation="portrait"

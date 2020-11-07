@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
@@ -17,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_margin="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
             app:cardCornerRadius="5dp"
             app:cardElevation="5dp">
 
@@ -48,12 +51,15 @@
             android:weightSum="1">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardEntregados"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="12dp"
                 android:layout_weight="0.5"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp">
 
@@ -81,6 +87,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardEncurso"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="12dp"
@@ -88,6 +95,8 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_weight="0.5"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp">
 
@@ -98,7 +107,6 @@
                     android:orientation="vertical">
 
 
-
                     <TextView
                         style="@style/TextAppearance.AppCompat.Medium"
                         android:layout_width="match_parent"
@@ -107,11 +115,11 @@
 
                     <TextView
                         android:id="@+id/textencamino"
+                        style="@style/TextAppearance.AppCompat.Display3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="#3f51b5"
-                        style="@style/TextAppearance.AppCompat.Display3"/>
+                        android:textColor="#3f51b5" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -124,11 +132,14 @@
             android:weightSum="1">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardPendientes"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="2dp"
                 android:layout_weight="0.5"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp">
 
@@ -157,6 +168,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardCancelados"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
                 android:layout_marginStart="12dp"
@@ -164,6 +176,8 @@
                 android:layout_marginEnd="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_weight="0.5"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="5dp">
 

@@ -5,7 +5,7 @@
         android:id="@+id/search_cat_product"
         android:icon="@drawable/ic_search"
         android:title="@string/action_search_product"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         app:actionViewClass="android.widget.SearchView"
         app:queryHint="@string/action_search_product"
         app:defaultQueryHint="@string/action_search_product"/>

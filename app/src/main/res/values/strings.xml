@@ -21,5 +21,6 @@
     <string name="action_canceled">Cancelados</string>
     <string name="action_onroad">En camino</string>
     <string name="action_search_product">Buscar pedido</string>
+    <string name="action_cerrarsesion">Salir</string>
 
 </resources>

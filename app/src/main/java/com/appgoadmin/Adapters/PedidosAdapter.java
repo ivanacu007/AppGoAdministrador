@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.appgoadmin.MainActivity;
 import com.appgoadmin.R;
 import com.appgoadmin.activities.DetallePedido;
+import com.appgoadmin.activities.PedidosActivity;
 import com.appgoadmin.models.pedidosModel;
 
 import java.util.List;
@@ -20,9 +21,9 @@ import java.util.List;
 public class PedidosAdapter extends RecyclerView.Adapter<PedidosViewHolder> {
 
     List<pedidosModel> pedidosModelList;
-    Context context;
+    PedidosActivity context;
 
-    public PedidosAdapter(List<pedidosModel> pedidosModelList, Context context) {
+    public PedidosAdapter(List<pedidosModel> pedidosModelList, PedidosActivity context) {
         this.pedidosModelList = pedidosModelList;
         this.context = context;
     }

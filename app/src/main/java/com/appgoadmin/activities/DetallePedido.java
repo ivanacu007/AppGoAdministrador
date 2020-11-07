@@ -216,6 +216,7 @@ public class DetallePedido extends AppCompatActivity {
                         swEntrega.setEnabled(true);
                         swCancel.setEnabled(true);
                         swEncamino.setEnabled(true);
+                        changeOption();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -322,8 +323,21 @@ public class DetallePedido extends AppCompatActivity {
         }
     }
 
+    public void changeOption(){
+        SharedPreferences sharedPreferences = getSharedPreferences("optiondata", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("option", 0);
+        editor.apply();
+    }
+
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
     }
 }

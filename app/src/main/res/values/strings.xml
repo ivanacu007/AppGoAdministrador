@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AppGoAdmin</string>
+    <string name="app_name">G&amp;GO Admin</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">G&amp;GO</string>
@@ -22,5 +22,7 @@
     <string name="action_onroad">En camino</string>
     <string name="action_search_product">Buscar pedido</string>
     <string name="action_cerrarsesion">Salir</string>
+    <string name="channel_name">Main G&amp;GO Notification Channel</string>
+    <string name="channel_description">This is the notification main channel</string>
 
 </resources>

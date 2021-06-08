@@ -1,7 +1,10 @@
 package com.appgoadmin;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 
 import com.appgoadmin.activities.LoginActivity;
 import com.google.android.material.navigation.NavigationView;
@@ -38,6 +41,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //startService(new Intent(getApplicationContext(),MyService.class));
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            String packageName = getPackageName();
+//            PowerManager pm = (PowerManager) getSystemService(POWER_SERVICE);
+//            if (!pm.isIgnoringBatteryOptimizations(packageName)) {
+//                Intent intent = new Intent();
+//                intent.setAction(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                intent.setData(Uri.parse("package:" + packageName));
+//                startActivity(intent);
+//            }
+//        }
     }
 
     public void validateUser() {

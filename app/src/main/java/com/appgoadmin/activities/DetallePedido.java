@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class DetallePedido extends AppCompatActivity {
     private List<pedidosModel> miscomprasModelList = new ArrayList<>();
     private TextView textCantidadProd, textMontoTotal,
             textMontoXCantidad, textDirection, textEnvio, textcodedate,
-            textRecibe, textNumber, textEntregado, textCancelado;
+            textRecibe, textNumber, textEntregado, textCancelado, textrepartidor;
     private String id;
     private RecyclerView mRec;
     private ResumeAdapter adapter;
@@ -57,6 +58,7 @@ public class DetallePedido extends AppCompatActivity {
     private Switch swCancel, swEntrega, swEncamino;
     private FloatingActionButton fab;
     private String pedidoCode, direccion, nombre, telefono;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +68,8 @@ public class DetallePedido extends AppCompatActivity {
         this.setTitle("");
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();
-        id = intent.getExtras().getString("ID");
+
+        textrepartidor = findViewById(R.id.textrepartidor);
         textRecibe = findViewById(R.id.textuserrecibe);
         textCancelado = findViewById(R.id.textcancelado);
         textNumber = findViewById(R.id.textrecibephone);
@@ -83,14 +85,14 @@ public class DetallePedido extends AppCompatActivity {
         mRec = findViewById(R.id.recyResume);
         fab = findViewById(R.id.fabShare);
         fab.setVisibility(View.GONE);
-        validateUser();
-        getComprasData(id);
-        getResme();
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWhatsApp();
+                checkEstatus();
+                //startActivity(new Intent(DetallePedido.this, AsignarPedido.class).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP));
+                //openWhatsApp();
             }
         });
 
@@ -98,6 +100,7 @@ public class DetallePedido extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 boolean isEntregado = false, isCancel = false;
+                fab.setEnabled(false);
                 if (isChecked) {
                     swEntrega.setChecked(false);
                     swCancel.setChecked(false);
@@ -116,6 +119,7 @@ public class DetallePedido extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 boolean isEncamino = false, isCancel = false;
+                fab.setEnabled(false);
                 if (isChecked) {
                     swEncamino.setChecked(false);
                     swCancel.setChecked(false);
@@ -134,6 +138,7 @@ public class DetallePedido extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 boolean isEncamino = false, isEntregado = false;
+                fab.setEnabled(false);
                 if (isChecked) {
                     swEntrega.setChecked(false);
                     swEncamino.setChecked(false);
@@ -182,6 +187,12 @@ public class DetallePedido extends AppCompatActivity {
                 if (cancelado) {
                     swCancel.setChecked(true);
                 }
+                String repname = miscomprasModelList.get(i).getRepartidorName();
+                if (!TextUtils.isEmpty(repname)) {
+                    textrepartidor.setText(miscomprasModelList.get(i).getRepartidorName());
+                } else {
+                    textrepartidor.setText("Sin repartidor");
+                }
 
                 textRecibe.setText("Recibe " + miscomprasModelList.get(i).getUsername());
                 textNumber.setText(miscomprasModelList.get(i).getUserphone());
@@ -216,6 +227,7 @@ public class DetallePedido extends AppCompatActivity {
                         swEntrega.setEnabled(true);
                         swCancel.setEnabled(true);
                         swEncamino.setEnabled(true);
+                        fab.setEnabled(true);
                         changeOption();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -302,7 +314,7 @@ public class DetallePedido extends AppCompatActivity {
         if (isInstalled) {
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "*Código*"+ "\n" + pedidoCode +
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "*Código*" + "\n" + pedidoCode +
                     "\n\n" + "*Dirección*" + "\n" + direccion +
                     "\n\n" + "*Recibe*" + "\n" + nombre +
                     "\n\n" + "*Contacto*" + "\n" + telefono);
@@ -323,11 +335,24 @@ public class DetallePedido extends AppCompatActivity {
         }
     }
 
-    public void changeOption(){
+    public void changeOption() {
         SharedPreferences sharedPreferences = getSharedPreferences("optiondata", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("option", 0);
         editor.apply();
+    }
+
+    public void checkEstatus() {
+        if (swCancel.isChecked() || swEncamino.isChecked() || swEntrega.isChecked()) {
+            Toast.makeText(this, "No se puede asignar un pedido en camino, entregado o cancelado", Toast.LENGTH_SHORT).show();
+        } else {
+            openWhatsApp();
+//            String nID = id;
+//            Intent i = new Intent(DetallePedido.this, AsignarPedido.class);
+//            i.putExtra("PID", nID);
+//            i.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            startActivity(i);
+        }
     }
 
     public boolean onSupportNavigateUp() {
@@ -339,5 +364,16 @@ public class DetallePedido extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Intent intent = getIntent();
+        id = intent.getExtras().getString("ID");
+        validateUser();
+        getComprasData(id);
+        getResme();
     }
 }

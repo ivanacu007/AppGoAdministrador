@@ -212,6 +212,15 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/textrepartidor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="..."
+                        android:textAlignment="center"
+                        android:textColor="#212112"
+                        android:textSize="16sp" />
+
+                    <TextView
                         android:id="@+id/textcancelado"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

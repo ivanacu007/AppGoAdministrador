@@ -5,11 +5,12 @@ public class pedidosModel {
     double totalCompra;
     int totalProductos;
     boolean entregado, cancelado, encamino;
+    String repartidorID, repartidorName;
 
     public pedidosModel() {
     }
 
-    public pedidosModel(String id, String fecha, String direccion, String username, String userphone, double totalCompra, int totalProductos, boolean entregado, boolean cancelado, boolean encamino) {
+    public pedidosModel(String id, String fecha, String direccion, String username, String userphone, double totalCompra, int totalProductos, boolean entregado, boolean cancelado, boolean encamino, String repartidorID, String repartidorName) {
         this.id = id;
         this.fecha = fecha;
         this.direccion = direccion;
@@ -20,6 +21,8 @@ public class pedidosModel {
         this.entregado = entregado;
         this.cancelado = cancelado;
         this.encamino = encamino;
+        this.repartidorID = repartidorID;
+        this.repartidorName = repartidorName;
     }
 
     public String getId() {
@@ -100,5 +103,21 @@ public class pedidosModel {
 
     public void setEncamino(boolean encamino) {
         this.encamino = encamino;
+    }
+
+    public String getRepartidorID() {
+        return repartidorID;
+    }
+
+    public void setRepartidorID(String repartidorID) {
+        this.repartidorID = repartidorID;
+    }
+
+    public String getRepartidorName() {
+        return repartidorName;
+    }
+
+    public void setRepartidorName(String repartidorName) {
+        this.repartidorName = repartidorName;
     }
 }
